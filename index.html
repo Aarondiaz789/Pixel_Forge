@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PIXEL FORGE Games</title>
+    <style>
+      :root {
+        --fondo: #160719;
+        --panel: #2b1048;
+        --rojo: #ef3340;
+        --azul: #3b82f6;
+        --morado: #8b3fd1;
+        --texto: #fff4f6;
+        --suave: #cbbce5;
+      }
+
+      * { box-sizing: border-box; }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: "Courier New", monospace;
+        color: var(--texto);
+        background:
+          radial-gradient(circle at 15% 10%, rgba(139, 63, 209, 0.55) 0%, transparent 38%),
+          radial-gradient(circle at 90% 75%, rgba(239, 51, 64, 0.32) 0%, transparent 38%),
+          var(--fondo);
+      }
+
+      header {
+        padding: 4.5rem 1.5rem 3rem;
+        text-align: center;
+      }
+
+      h1 {
+        margin: 0;
+        color: var(--rojo);
+        font-size: clamp(2.4rem, 8vw, 5.5rem);
+        letter-spacing: 0.12em;
+        text-shadow: 3px 3px 0 rgba(59, 130, 246, 0.72);
+      }
+
+      header p {
+        color: var(--suave);
+        font-size: 1.1rem;
+      }
+
+      .logo {
+        display: block;
+        width: min(290px, 70vw);
+        margin: 0 auto 1.5rem;
+        border-radius: 20px;
+        box-shadow: 0 14px 32px rgba(0, 0, 0, 0.3);
+      }
+
+      main {
+        width: min(1000px, calc(100% - 3rem));
+        margin: 0 auto 4rem;
+        display: grid;
+        gap: 2rem;
+      }
+
+      section {
+        padding: 1.5rem;
+        border: 1px solid rgba(183, 132, 236, 0.55);
+        border-radius: 22px;
+        background: linear-gradient(135deg, rgba(54, 28, 87, 0.9), rgba(28, 13, 51, 0.92));
+        box-shadow: 0 16px 35px rgba(0, 0, 0, 0.24);
+        backdrop-filter: blur(8px);
+      }
+
+      h2 {
+        margin-top: 0;
+        color: var(--azul);
+        font-size: 1.65rem;
+      }
+
+      .proyectos {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+        gap: 1rem;
+      }
+
+      article {
+        min-height: 130px;
+        padding: 1rem;
+        border: 1px solid rgba(119, 83, 165, 0.7);
+        border-radius: 15px;
+        background: rgba(30, 10, 49, 0.76);
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.16);
+        transition: transform 180ms ease, border-color 180ms ease;
+      }
+
+      article:hover {
+        transform: translateY(-4px);
+        border-color: var(--azul);
+      }
+
+      h3 { margin-top: 0; }
+      article p { color: var(--suave); line-height: 1.5; }
+      .estado { color: var(--rojo); font-weight: bold; }
+      .terminado { color: var(--azul); font-weight: bold; }
+      .descarga { color: #cf8cff; font-weight: bold; }
+    </style>
+  </head>
+  <body>
+    <header>
+      <img class="logo" src="Pixel forge-logo.jpeg" alt="Logo de Pixel Forge" />
+      <h1>PIXEL FORGE GAMES</h1>
+      <p>Forjando aventuras píxel a píxel.</p>
+    </header>
+
+    <main>
+      <section>
+        <h2>Proyectos en curso</h2>
+        <div class="proyectos">
+          <article>
+            <h3>Próximo juego</h3>
+            <p class="estado">EN DESARROLLO</p>
+            <p>Aquí podrás añadir la información de tu proyecto actual.</p>
+          </article>
+          <article>
+            <h3>Nuevo proyecto</h3>
+            <p class="estado">EN DESARROLLO</p>
+            <p>Reserva este espacio para otro juego que estés creando.</p>
+          </article>
+        </div>
+      </section>
+
+      <section>
+        <h2>Proyectos terminados</h2>
+        <div class="proyectos">
+          <article>
+            <h3>Tu primer lanzamiento</h3>
+            <p class="terminado">TERMINADO</p>
+            <p>Añade aquí una breve descripción de tu juego publicado.</p>
+          </article>
+          <article>
+            <h3>Proyecto finalizado</h3>
+            <p class="terminado">TERMINADO</p>
+            <p>Este espacio está listo para mostrar otro proyecto completo.</p>
+          </article>
+        </div>
+      </section>
+
+      <section>
+        <h2>Descarga futuros juegos</h2>
+        <div class="proyectos">
+          <article>
+            <h3>Próximamente</h3>
+            <p class="descarga">DESCARGAS DISPONIBLES PRONTO</p>
+            <p>Aquí encontrarás enlaces para descargar nuestros próximos juegos cuando estén listos.</p>
+          </article>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
