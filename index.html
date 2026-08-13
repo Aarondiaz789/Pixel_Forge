@@ -188,12 +188,48 @@
         line-height: 1.65;
       }
 
+      .selector-idioma {
+        position: fixed;
+        top: 1.25rem;
+        right: 1.25rem;
+        z-index: 2;
+        display: flex;
+        align-items: center;
+        gap: 0.55rem;
+        padding: 0.55rem 0.75rem;
+        border: 1px solid rgba(139, 177, 255, 0.46);
+        border-radius: 14px;
+        background: rgba(9, 25, 56, 0.9);
+        box-shadow: 0 10px 24px rgba(0, 0, 0, 0.24);
+        color: var(--suave);
+        backdrop-filter: blur(8px);
+      }
+
+      .selector-idioma select {
+        border: 0;
+        border-radius: 8px;
+        padding: 0.35rem 0.45rem;
+        background: #132b58;
+        color: var(--texto);
+        font: inherit;
+        cursor: pointer;
+      }
+
       @media (max-width: 650px) {
         .desarrolladores { position: static; margin: 1rem auto 0; }
+        .selector-idioma { position: static; width: fit-content; margin: 1rem auto; }
       }
     </style>
   </head>
   <body>
+    <label class="selector-idioma" for="idioma">
+      <span>Idioma</span>
+      <select id="idioma" aria-label="Seleccionar idioma">
+        <option value="es">Espa&ntilde;ol</option>
+        <option value="en">English</option>
+        <option value="pt">Portugu&ecirc;s</option>
+      </select>
+    </label>
     <details class="desarrolladores">
       <summary>Desarrolladores</summary>
       <ul>
@@ -277,5 +313,53 @@
         </div>
       </section>
     </main>
+    <script>
+      const traducciones = {
+        es: {
+          idioma: 'Idioma', devs: 'Desarrolladores', fefe: 'c\u00f3digo, m\u00fasica y visuales', potatino: 'visuales, principalmente pixel art',
+          lema: 'Forjando aventuras p\u00edxel a p\u00edxel.', secciones: ['Proyectos en curso', 'Proyectos terminados', 'Descarga futuros juegos'],
+          desarrollo: 'EN DESARROLLO', pausado: 'PAUSADO', porcentaje: ['Porcentaje de One More Day', 'Porcentaje de False Player'],
+          terminados: ['Primer juego', 'Proyecto finalizado'], pronto: 'PR\u00d3XIMAMENTE', descarga: ['Pr\u00f3ximamente', 'DESCARGAS DISPONIBLES PRONTO']
+        },
+        en: {
+          idioma: 'Language', devs: 'Developers', fefe: 'code, music and visuals', potatino: 'visuals, mainly pixel art',
+          lema: 'Forging adventures, pixel by pixel.', secciones: ['Projects in progress', 'Finished projects', 'Download future games'],
+          desarrollo: 'IN DEVELOPMENT', pausado: 'PAUSED', porcentaje: ['One More Day progress', 'False Player progress'],
+          terminados: ['First game', 'Completed project'], pronto: 'COMING SOON', descarga: ['Coming soon', 'DOWNLOADS AVAILABLE SOON']
+        },
+        pt: {
+          idioma: 'Idioma', devs: 'Desenvolvedores', fefe: 'c\u00f3digo, m\u00fasica e visuais', potatino: 'visuais, principalmente pixel art',
+          lema: 'Forjando aventuras, pixel por pixel.', secciones: ['Projetos em andamento', 'Projetos finalizados', 'Baixe jogos futuros'],
+          desarrollo: 'EM DESENVOLVIMENTO', pausado: 'PAUSADO', porcentaje: ['Progresso de One More Day', 'Progresso de False Player'],
+          terminados: ['Primeiro jogo', 'Projeto finalizado'], pronto: 'EM BREVE', descarga: ['Em breve', 'DOWNLOADS DISPON\u00cdVEIS EM BREVE']
+        }
+      };
+
+      document.getElementById('idioma').addEventListener('change', ({ target }) => {
+        const t = traducciones[target.value];
+        const secciones = document.querySelectorAll('h2');
+        const tarjetas = document.querySelectorAll('article');
+        const estados = document.querySelectorAll('.estado');
+        const proximamente = document.querySelectorAll('.proximamente');
+        document.documentElement.lang = target.value;
+        document.querySelector('.selector-idioma span').textContent = t.idioma;
+        document.querySelector('.desarrolladores summary').textContent = t.devs;
+        document.querySelectorAll('.desarrolladores li')[0].innerHTML = '<strong>FEFE_xd:</strong> ' + t.fefe;
+        document.querySelectorAll('.desarrolladores li')[1].innerHTML = '<strong>potatino:</strong> ' + t.potatino;
+        document.querySelector('header p').textContent = t.lema;
+        secciones.forEach((seccion, indice) => seccion.textContent = t.secciones[indice]);
+        estados[0].textContent = t.desarrollo;
+        estados[1].textContent = t.pausado;
+        estados[2].textContent = t.desarrollo;
+        estados[3].textContent = t.pausado;
+        tarjetas[2].querySelector('h3').textContent = t.porcentaje[0];
+        tarjetas[3].querySelector('h3').textContent = t.porcentaje[1];
+        tarjetas[4].querySelector('h3').textContent = t.terminados[0];
+        tarjetas[5].querySelector('h3').textContent = t.terminados[1];
+        proximamente.forEach((estado) => estado.textContent = t.pronto);
+        tarjetas[6].querySelector('h3').textContent = t.descarga[0];
+        tarjetas[6].querySelector('.descarga').textContent = t.descarga[1];
+      });
+    </script>
   </body>
 </html>
