@@ -116,6 +116,33 @@
         object-fit: cover;
       }
 
+      .progreso {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        margin-top: 1rem;
+      }
+
+      .barra-progreso {
+        flex: 1;
+        height: 12px;
+        overflow: hidden;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.14);
+      }
+
+      .barra-progreso span {
+        display: block;
+        width: 10%;
+        height: 100%;
+        border-radius: inherit;
+        background: linear-gradient(90deg, var(--rojo), var(--azul));
+      }
+
+      .barra-progreso .veinte { width: 20%; }
+
+      .porcentaje { color: var(--texto); font-weight: 700; }
+
       @media (max-width: 560px) {
         .juego-destacado { grid-column: auto; }
         .contenido-juego { align-items: flex-start; }
@@ -149,10 +176,31 @@
               <img class="imagen-juego" src="ONM.jpeg" alt="One More Day" />
             </div>
           </article>
+          <article class="juego-destacado">
+            <div class="contenido-juego">
+              <div>
+                <h3>False Player</h3>
+                <p class="estado">PAUSADO</p>
+                <p></p>
+              </div>
+              <img class="imagen-juego" src="FALSE_PLAYER.jpeg" alt="False Player" />
+            </div>
+          </article>
           <article>
-            <h3>Porcentaje del proyecto</h3>
+            <h3>Porcentaje de One More Day</h3>
             <p class="estado">EN DESARROLLO</p>
-            <p></p>
+            <div class="progreso" aria-label="Progreso del proyecto: 10 por ciento">
+              <div class="barra-progreso"><span></span></div>
+              <span class="porcentaje">10%</span>
+            </div>
+          </article>
+          <article>
+            <h3>Porcentaje de False Player</h3>
+            <p class="estado">PAUSADO</p>
+            <div class="progreso" aria-label="Progreso de False Player: 20 por ciento">
+              <div class="barra-progreso"><span class="veinte"></span></div>
+              <span class="porcentaje">20%</span>
+            </div>
           </article>
         </div>
       </section>
