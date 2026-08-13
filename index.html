@@ -20,7 +20,7 @@
       body {
         margin: 0;
         min-height: 100vh;
-        font-family: "Courier New", monospace;
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
         color: var(--texto);
         background:
           radial-gradient(circle at 15% 10%, rgba(139, 63, 209, 0.55) 0%, transparent 38%),
@@ -97,6 +97,30 @@
         border-color: var(--azul);
       }
 
+      .juego-destacado {
+        grid-column: span 2;
+      }
+
+      .contenido-juego {
+        display: flex;
+        align-items: center;
+        gap: 1.25rem;
+      }
+
+      .contenido-juego > div { flex: 1; }
+
+      .imagen-juego {
+        width: min(155px, 38%);
+        border-radius: 14px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.28);
+        object-fit: cover;
+      }
+
+      @media (max-width: 560px) {
+        .juego-destacado { grid-column: auto; }
+        .contenido-juego { align-items: flex-start; }
+      }
+
       h3 { margin-top: 0; }
       article p { color: var(--suave); line-height: 1.5; }
       .estado { color: var(--rojo); font-weight: bold; }
@@ -115,15 +139,20 @@
       <section>
         <h2>Proyectos en curso</h2>
         <div class="proyectos">
-          <article>
-            <h3>Próximo juego</h3>
-            <p class="estado">EN DESARROLLO</p>
-            <p>Aquí podrás añadir la información de tu proyecto actual.</p>
+          <article class="juego-destacado">
+            <div class="contenido-juego">
+              <div>
+                <h3>One More Day</h3>
+                <p class="estado">EN DESARROLLO</p>
+                <p></p>
+              </div>
+              <img class="imagen-juego" src="ONM.jpeg" alt="One More Day" />
+            </div>
           </article>
           <article>
-            <h3>Nuevo proyecto</h3>
+            <h3>Porcentaje del proyecto</h3>
             <p class="estado">EN DESARROLLO</p>
-            <p>Reserva este espacio para otro juego que estés creando.</p>
+            <p></p>
           </article>
         </div>
       </section>
@@ -132,14 +161,14 @@
         <h2>Proyectos terminados</h2>
         <div class="proyectos">
           <article>
-            <h3>Tu primer lanzamiento</h3>
+            <h3>Primer juego</h3>
             <p class="terminado">TERMINADO</p>
-            <p>Añade aquí una breve descripción de tu juego publicado.</p>
+            <p></p>
           </article>
           <article>
             <h3>Proyecto finalizado</h3>
             <p class="terminado">TERMINADO</p>
-            <p>Este espacio está listo para mostrar otro proyecto completo.</p>
+            <p></p>
           </article>
         </div>
       </section>
@@ -150,7 +179,7 @@
           <article>
             <h3>Próximamente</h3>
             <p class="descarga">DESCARGAS DISPONIBLES PRONTO</p>
-            <p>Aquí encontrarás enlaces para descargar nuestros próximos juegos cuando estén listos.</p>
+            <p></p>
           </article>
         </div>
       </section>
