@@ -1,0 +1,550 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PIXEL FORGE Games</title>
+    <style>
+      :root {
+        --fondo: #07152d;
+        --panel: #2b1048;
+        --rojo: #ef3340;
+        --azul: #3b82f6;
+        --morado: #8b3fd1;
+        --texto: #fff4f6;
+        --suave: #cbbce5;
+      }
+
+      * { box-sizing: border-box; }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        color: var(--texto);
+        background:
+          radial-gradient(circle at 15% 10%, rgba(59, 130, 246, 0.42) 0%, transparent 38%),
+          radial-gradient(circle at 90% 75%, rgba(77, 55, 147, 0.34) 0%, transparent 38%),
+          var(--fondo);
+      }
+
+      header {
+        padding: 4.5rem 1.5rem 3rem;
+        text-align: center;
+      }
+
+      h1 {
+        margin: 0;
+        font-family: "Arial Rounded MT Bold", "Trebuchet MS", Inter, sans-serif;
+        font-size: clamp(2.35rem, 7vw, 5.2rem);
+        font-weight: 800;
+        letter-spacing: 0.06em;
+        line-height: 1.05;
+        color: #f1f6ff;
+        text-shadow:
+          0 0 10px rgba(59, 130, 246, 0.75),
+          0 0 20px rgba(139, 63, 209, 0.38);
+      }
+
+      header p {
+        color: var(--suave);
+        font-size: 1.1rem;
+      }
+
+      .logo {
+        display: block;
+        width: min(290px, 70vw);
+        margin: 0 auto 1.5rem;
+        border-radius: 20px;
+        box-shadow: 0 14px 32px rgba(0, 0, 0, 0.3), 0 0 18px rgba(59, 130, 246, 0.22);
+      }
+
+      main {
+        width: min(1000px, calc(100% - 3rem));
+        margin: 0 auto 4rem;
+        display: grid;
+        gap: 2rem;
+      }
+
+      section {
+        padding: 1.5rem;
+        border: 1px solid rgba(183, 132, 236, 0.55);
+        border-radius: 22px;
+        background: linear-gradient(135deg, rgba(54, 28, 87, 0.9), rgba(28, 13, 51, 0.92));
+        box-shadow: 0 16px 35px rgba(0, 0, 0, 0.24), 0 0 20px rgba(59, 130, 246, 0.08);
+        backdrop-filter: blur(8px);
+      }
+
+      h2 {
+        margin-top: 0;
+        color: var(--azul);
+        font-size: 1.65rem;
+      }
+
+      .proyectos {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+        gap: 1rem;
+      }
+
+      article {
+        min-height: 130px;
+        padding: 1rem;
+        border: 1px solid rgba(119, 83, 165, 0.7);
+        border-radius: 15px;
+        background: rgba(30, 10, 49, 0.76);
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.16);
+        transition: transform 180ms ease, border-color 180ms ease;
+      }
+
+      article:hover {
+        transform: translateY(-4px);
+        border-color: var(--azul);
+      }
+
+      .proyecto-clicable { cursor: pointer; }
+
+      .modal {
+        position: fixed;
+        inset: 0;
+        z-index: 10;
+        display: grid;
+        place-items: center;
+        padding: 1.5rem;
+        background: rgba(2, 8, 23, 0.72);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 180ms ease;
+      }
+
+      .modal.abierto { opacity: 1; pointer-events: auto; }
+
+      .modal-contenido {
+        position: relative;
+        width: min(620px, 100%);
+        padding: 2rem;
+        border: 1px solid rgba(139, 177, 255, 0.5);
+        border-radius: 22px;
+        background: linear-gradient(135deg, #172c57, #190d35);
+        box-shadow: 0 20px 48px rgba(0, 0, 0, 0.45), 0 0 24px rgba(59, 130, 246, 0.15);
+      }
+
+      .modal-contenido h2 { margin-right: 2rem; }
+      .modal-contenido p { color: var(--suave); line-height: 1.65; }
+
+      .cerrar-modal {
+        position: absolute;
+        top: 0.9rem;
+        right: 1rem;
+        border: 0;
+        background: transparent;
+        color: var(--texto);
+        font-size: 1.8rem;
+        cursor: pointer;
+      }
+
+      .juego-destacado {
+        grid-column: span 2;
+      }
+
+      .contenido-juego {
+        display: flex;
+        align-items: center;
+        gap: 1.25rem;
+      }
+
+      .contenido-juego > div { flex: 1; }
+
+      .imagen-juego {
+        width: min(155px, 38%);
+        border-radius: 14px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.28);
+        object-fit: cover;
+      }
+
+      .progreso {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        margin-top: 1rem;
+      }
+
+      .barra-progreso {
+        flex: 1;
+        height: 12px;
+        overflow: hidden;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.14);
+      }
+
+      .barra-progreso span {
+        display: block;
+        width: 10%;
+        height: 100%;
+        border-radius: inherit;
+        background: linear-gradient(90deg, var(--rojo), var(--azul));
+      }
+
+      .barra-progreso .veinte { width: 20%; }
+
+      .porcentaje { color: var(--texto); font-weight: 700; }
+
+      @media (max-width: 560px) {
+        .juego-destacado { grid-column: auto; }
+        .contenido-juego { align-items: flex-start; }
+      }
+
+      h3 { margin-top: 0; }
+      article p { color: var(--suave); line-height: 1.5; }
+      .estado { color: var(--rojo); font-weight: bold; }
+      .terminado { color: var(--azul); font-weight: bold; }
+      .descarga { color: #cf8cff; font-weight: bold; }
+      .proximamente { color: #d5d9e1; font-weight: bold; }
+
+      .desarrolladores {
+        position: fixed;
+        top: 1.25rem;
+        left: 1.25rem;
+        z-index: 2;
+        width: min(255px, calc(100vw - 2.5rem));
+        overflow: hidden;
+        border: 1px solid rgba(139, 177, 255, 0.46);
+        border-radius: 14px;
+        background: rgba(9, 25, 56, 0.9);
+        box-shadow: 0 10px 24px rgba(0, 0, 0, 0.24);
+        backdrop-filter: blur(8px);
+      }
+
+      .desarrolladores summary {
+        padding: 0.85rem 1rem;
+        color: var(--azul);
+        font-weight: 700;
+        cursor: pointer;
+      }
+
+      .desarrolladores ul {
+        margin: 0;
+        padding: 0 1.2rem 1rem 2.2rem;
+        color: var(--suave);
+        line-height: 1.65;
+      }
+
+      .selector-idioma {
+        position: fixed;
+        top: 1.25rem;
+        right: 1.25rem;
+        z-index: 2;
+        display: flex;
+        align-items: center;
+        gap: 0.55rem;
+        padding: 0.55rem 0.75rem;
+        border: 1px solid rgba(139, 177, 255, 0.46);
+        border-radius: 14px;
+        background: rgba(9, 25, 56, 0.9);
+        box-shadow: 0 10px 24px rgba(0, 0, 0, 0.24);
+        color: var(--suave);
+        backdrop-filter: blur(8px);
+      }
+
+      .selector-idioma select {
+        border: 0;
+        border-radius: 8px;
+        padding: 0.35rem 0.45rem;
+        background: #132b58;
+        color: var(--texto);
+        font: inherit;
+        cursor: pointer;
+      }
+
+      @media (max-width: 650px) {
+        .desarrolladores { position: static; margin: 1rem auto 0; }
+        .selector-idioma { position: static; width: fit-content; margin: 1rem auto; }
+      }
+    </style>
+  </head>
+  <body>
+    <label class="selector-idioma" for="idioma">
+      <span>Idioma</span>
+      <select id="idioma" aria-label="Seleccionar idioma">
+        <option value="es">Espa&ntilde;ol</option>
+        <option value="en">English</option>
+        <option value="pt">Portugu&ecirc;s</option>
+        <option value="ja">日本語</option>
+      </select>
+    </label>
+    <details class="desarrolladores">
+      <summary>Desarrolladores</summary>
+      <ul>
+        <li><strong>FEFE_xd:</strong> código, música y visuales</li>
+        <li><strong>potatino:</strong> visuales, principalmente pixel art</li>
+      </ul>
+    </details>
+    <header>
+      <img class="logo" src="Pixel forge-logo.jpeg" alt="Logo de Pixel Forge" />
+      <h1>PIXEL FORGE GAMES</h1>
+      <p>Forjando aventuras píxel a píxel.</p>
+    </header>
+
+    <main>
+      <section>
+        <h2>Proyectos en curso</h2>
+        <div class="proyectos">
+          <article class="juego-destacado proyecto-clicable" id="one-more-day" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Ver descripci&oacute;n de One More Day">
+            <div class="contenido-juego">
+              <div>
+                <h3>One More Day</h3>
+                <p class="estado">EN DESARROLLO</p>
+                <p></p>
+              </div>
+              <img class="imagen-juego" src="ONM.jpeg" alt="One More Day" />
+            </div>
+          </article>
+          <article class="juego-destacado proyecto-clicable" id="false-player" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Ver descripci&oacute;n de False Player">
+            <div class="contenido-juego">
+              <div>
+                <h3>False Player</h3>
+                <p class="estado">PAUSADO</p>
+                <p></p>
+              </div>
+              <img class="imagen-juego" src="FALSE_PLAYER.jpeg" alt="False Player" />
+            </div>
+          </article>
+          <article>
+            <h3>Porcentaje de One More Day</h3>
+            <p class="estado">EN DESARROLLO</p>
+            <div class="progreso" aria-label="Progreso del proyecto: 13 por ciento">
+              <div class="barra-progreso"><span style="width: 13%"></span></div>
+              <span class="porcentaje">13%</span>
+            </div>
+          </article>
+          <article>
+            <h3>Porcentaje de False Player</h3>
+            <p class="estado">PAUSADO</p>
+            <div class="progreso" aria-label="Progreso de False Player: 20 por ciento">
+              <div class="barra-progreso"><span class="veinte"></span></div>
+              <span class="porcentaje">20%</span>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section>
+        <h2>Proyectos terminados</h2>
+        <div class="proyectos">
+          <article>
+            <h3>Primer juego</h3>
+            <p class="proximamente">PRÓXIMAMENTE</p>
+            <p></p>
+          </article>
+          <article>
+            <h3>Proyecto finalizado</h3>
+            <p class="proximamente">PRÓXIMAMENTE</p>
+            <p></p>
+          </article>
+        </div>
+      </section>
+
+      <section>
+        <h2>Descarga futuros juegos</h2>
+        <div class="proyectos">
+          <article>
+            <h3>Próximamente</h3>
+            <p class="descarga">DESCARGAS DISPONIBLES PRONTO</p>
+            <p></p>
+          </article>
+        </div>
+      </section>
+    </main>
+    <div class="modal" id="modal-juego" aria-hidden="true" role="dialog" aria-modal="true">
+      <div class="modal-contenido">
+        <button class="cerrar-modal" type="button" aria-label="Cerrar descripción">&times;</button>
+        <h2 id="modal-titulo">One More Day</h2>
+        <div id="modal-cuerpo"></div>
+      </div>
+    </div>
+    <script>
+      const traducciones = {
+        es: {
+          idioma: 'Idioma',
+          devs: 'Desarrolladores',
+          fefe: 'código, música y visuales',
+          potatino: 'visuales, principalmente pixel art',
+          lema: 'Forjando aventuras píxel a píxel.',
+          secciones: ['Proyectos en curso', 'Proyectos terminados', 'Descarga futuros juegos'],
+          desarrollo: 'EN DESARROLLO',
+          pausado: 'PAUSADO',
+          porcentaje: ['Porcentaje de One More Day', 'Porcentaje de False Player'],
+          terminados: ['Primer juego', 'Proyecto finalizado'],
+          pronto: 'PRÓXIMAMENTE',
+          descargaTitulo: 'Próximamente',
+          descargaTexto: 'DESCARGAS DISPONIBLES PRONTO',
+          oneMoreDayTitle: 'One More Day',
+          falsePlayerTitle: 'False Player',
+          oneMoreDayText: '<p>En <strong>One More Day</strong>, despiertas en un día que parece ser completamente normal… pero algo no termina de encajar.</p><p>Explora tu entorno, descubre lo que se esconde detrás de los pequeños detalles y toma decisiones que podrían cambiar la forma en que transcurre el día. Entre momentos cotidianos, misterios y situaciones cada vez más extrañas, tendrás que descubrir qué está pasando realmente.</p><p><strong>Un día. Una oportunidad. ¿Qué harás con ella?</strong></p>',
+          falsePlayerText: '<p>En <strong>False Player</strong>, eres un jugador dentro de un mundo que parece funcionar con normalidad… hasta que empiezas a notar que algo está mal.</p><p>A medida que exploras, conocerás inteligencias artificiales y misteriosos <strong>personajes</strong>, mientras descubres los secretos detrás del mundo en el que vives. Pero cuanto más intentas comprender la verdad, más comienza a romperse la realidad.</p><p>Tus decisiones determinarán el camino que tomarás y, dependiendo de ellas, podrías descubrir una verdad que nunca debió ser encontrada.</p><p><strong>¿Eres realmente el jugador… o simplemente otro elemento del juego?</strong></p>'
+        },
+        en: {
+          idioma: 'Language',
+          devs: 'Developers',
+          fefe: 'code, music and visuals',
+          potatino: 'visuals, mainly pixel art',
+          lema: 'Forging adventures, pixel by pixel.',
+          secciones: ['Projects in progress', 'Finished projects', 'Download future games'],
+          desarrollo: 'IN DEVELOPMENT',
+          pausado: 'PAUSED',
+          porcentaje: ['One More Day progress', 'False Player progress'],
+          terminados: ['First game', 'Completed project'],
+          pronto: 'COMING SOON',
+          descargaTitulo: 'Coming soon',
+          descargaTexto: 'DOWNLOADS AVAILABLE SOON',
+          oneMoreDayTitle: 'One More Day',
+          falsePlayerTitle: 'False Player',
+          oneMoreDayText: '<p>In <strong>One More Day</strong>, you wake up on a day that seems completely normal… but something does not quite fit.</p><p>Explore your surroundings, uncover what is hidden behind the small details, and make decisions that could change the way the day unfolds. Between ordinary moments, mysteries, and increasingly strange situations, you will have to discover what is really happening.</p><p><strong>One day. One chance. What will you do with it?</strong></p>',
+          falsePlayerText: '<p>In <strong>False Player</strong>, you are a player inside a world that seems to function normally… until you begin to notice that something is wrong.</p><p>As you explore, you will meet artificial intelligences and mysterious <strong>characters</strong>, while uncovering the secrets behind the world you live in. But the more you try to understand the truth, the more reality begins to break apart.</p><p>Your decisions will determine the path you take, and depending on them, you might discover a truth that was never supposed to be found.</p><p><strong>Are you really the player… or just another element of the game?</strong></p>'
+        },
+        pt: {
+          idioma: 'Idioma',
+          devs: 'Desenvolvedores',
+          fefe: 'código, música e visuais',
+          potatino: 'visuais, principalmente pixel art',
+          lema: 'Forjando aventuras, pixel por pixel.',
+          secciones: ['Projetos em andamento', 'Projetos finalizados', 'Baixe jogos futuros'],
+          desarrollo: 'EM DESENVOLVIMENTO',
+          pausado: 'PAUSADO',
+          porcentaje: ['Progresso de One More Day', 'Progresso de False Player'],
+          terminados: ['Primeiro jogo', 'Projeto finalizado'],
+          pronto: 'EM BREVE',
+          descargaTitulo: 'Em breve',
+          descargaTexto: 'DOWNLOADS DISPONÍVEIS EM BREVE',
+          oneMoreDayTitle: 'One More Day',
+          falsePlayerTitle: 'False Player',
+          oneMoreDayText: '<p>Em <strong>One More Day</strong>, você acorda em um dia que parece completamente normal… mas algo não parece encaixar.</p><p>Explore o seu entorno, descubra o que está escondido por trás dos pequenos detalhes e tome decisões que podem mudar a forma como o dia se desenrola. Entre momentos cotidianos, mistérios e situações cada vez mais estranhas, você terá de descobrir o que realmente está acontecendo.</p><p><strong>Um dia. Uma oportunidade. O que você fará com ela?</strong></p>',
+          falsePlayerText: '<p>Em <strong>False Player</strong>, você é um jogador dentro de um mundo que parece funcionar normalmente… até começar a perceber que algo está errado.</p><p>À medida que explora, você conhecerá inteligências artificiais e misteriosos <strong>personagens</strong>, enquanto descobre os segredos por trás do mundo em que vive. Mas quanto mais tenta compreender a verdade, mais a realidade começa a se romper.</p><p>Suas decisões determinarão o caminho que você seguirá e, dependendo delas, talvez descubra uma verdade que nunca deveria ter sido encontrada.</p><p><strong>Você é realmente o jogador… ou apenas mais um elemento do jogo?</strong></p>'
+        },
+        ja: {
+          idioma: '言語',
+          devs: '開発者',
+          fefe: 'コード、音楽、ビジュアル',
+          potatino: 'ビジュアル、主にピクセルアート',
+          lema: 'ピクセルごとに冒険を作り上げる。',
+          secciones: ['制作中のプロジェクト', '完成したプロジェクト', '今後のゲームをダウンロード'],
+          desarrollo: '開発中',
+          pausado: '一時停止中',
+          porcentaje: ['One More Day の進捗', 'False Player の進捗'],
+          terminados: ['最初のゲーム', '完成したプロジェクト'],
+          pronto: '近日公開',
+          descargaTitulo: '近日公開',
+          descargaTexto: 'ダウンロードはまもなく利用可能',
+          oneMoreDayTitle: 'One More Day',
+          falsePlayerTitle: 'False Player',
+          oneMoreDayText: '<p><strong>One More Day</strong>では、普段と何も変わらないはずの日に目覚めます……しかし、何かが少しおかしいのを感じます。</p><p>周囲を探索し、小さな違和感の奥に隠れた真実を見つけ、日常の流れを変える選択をしていきます。日常の中に潜む謎と、どんどん不気味になっていく状況の中で、何が本当に起きているのかを知ることになります。</p><p><strong>一日、一度のチャンス。あなたはそれをどう使いますか？</strong></p>',
+          falsePlayerText: '<p><strong>False Player</strong>では、普通に機能しているように見える世界の中にいるプレイヤーとして、ある時「何かがおかしい」と気づき始めます。</p><p>探索を進めるにつれて、人工知能や謎の<strong>キャラクター</strong>と出会い、住んでいる世界の裏側に隠された秘密に触れていきます。しかし真実を知ろうとすればするほど、現実そのものが崩れ始めます。</p><p>あなたの選択が進む道を決め、どの道を選ぶかで、決して見つけてはいけなかった真実を見つけることになるかもしれません。</p><p><strong>あなたは本当にプレイヤーなのか……それともゲームの中のただの要素にすぎないのか？</strong></p>'
+        }
+      };
+
+      const modal = document.getElementById('modal-juego');
+      const modalTitulo = document.getElementById('modal-titulo');
+      const modalCuerpo = document.getElementById('modal-cuerpo');
+      const selectIdioma = document.getElementById('idioma');
+      let idiomaActual = 'es';
+
+      const proyectos = {
+        'one-more-day': {
+          key: 'oneMoreDay',
+          title: 'One More Day'
+        },
+        'false-player': {
+          key: 'falsePlayer',
+          title: 'False Player'
+        }
+      };
+
+      function actualizarTexto() {
+        const t = traducciones[idiomaActual];
+        document.documentElement.lang = idiomaActual;
+        document.querySelector('.selector-idioma span').textContent = t.idioma;
+        document.querySelector('.desarrolladores summary').textContent = t.devs;
+        document.querySelectorAll('.desarrolladores li')[0].innerHTML = '<strong>FEFE_xd:</strong> ' + t.fefe;
+        document.querySelectorAll('.desarrolladores li')[1].innerHTML = '<strong>potatino:</strong> ' + t.potatino;
+        document.querySelector('header p').textContent = t.lema;
+
+        const titulosSeccion = document.querySelectorAll('h2');
+        titulosSeccion[0].textContent = t.secciones[0];
+        titulosSeccion[1].textContent = t.secciones[1];
+        titulosSeccion[2].textContent = t.secciones[2];
+
+        const estados = document.querySelectorAll('.estado');
+        estados[0].textContent = t.desarrollo;
+        estados[1].textContent = t.pausado;
+        estados[2].textContent = t.desarrollo;
+        estados[3].textContent = t.pausado;
+
+        const titulosProgresos = document.querySelectorAll('article h3');
+        titulosProgresos[2].textContent = t.porcentaje[0];
+        titulosProgresos[3].textContent = t.porcentaje[1];
+        titulosProgresos[4].textContent = t.terminados[0];
+        titulosProgresos[5].textContent = t.terminados[1];
+        titulosProgresos[6].textContent = t.descargaTitulo;
+
+        const proximos = document.querySelectorAll('.proximamente');
+        proximos[0].textContent = t.pronto;
+        proximos[1].textContent = t.pronto;
+
+        const descarga = document.querySelector('.descarga');
+        descarga.textContent = t.descargaTexto;
+
+        if (modal.classList.contains('abierto')) {
+          const actual = modal.dataset.project;
+          const p = proyectos[actual];
+          modalTitulo.textContent = p.title;
+          modalCuerpo.innerHTML = t[p.key + 'Text'];
+        }
+      }
+
+      function abrirProyecto(id) {
+        const project = proyectos[id];
+        const textKey = project.key + 'Text';
+        modal.dataset.project = id;
+        modalTitulo.textContent = project.title;
+        modalCuerpo.innerHTML = traducciones[idiomaActual][textKey];
+        modal.classList.add('abierto');
+        modal.setAttribute('aria-hidden', 'false');
+        modal.querySelector('.cerrar-modal').focus();
+      }
+
+      function cerrarModal() {
+        modal.classList.remove('abierto');
+        modal.setAttribute('aria-hidden', 'true');
+        modal.dataset.project = '';
+      }
+
+      document.querySelectorAll('.proyecto-clicable').forEach((card) => {
+        card.addEventListener('click', () => abrirProyecto(card.id));
+        card.addEventListener('keydown', (event) => {
+          if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault();
+            abrirProyecto(card.id);
+          }
+        });
+      });
+
+      modal.querySelector('.cerrar-modal').addEventListener('click', cerrarModal);
+      modal.addEventListener('click', (event) => {
+        if (event.target === modal) cerrarModal();
+      });
+
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && modal.classList.contains('abierto')) {
+          cerrarModal();
+        }
+      });
+
+      selectIdioma.addEventListener('change', (event) => {
+        idiomaActual = event.target.value;
+        actualizarTexto();
+      });
+
+      actualizarTexto();
+    </script>
+  </body>
+</html>
