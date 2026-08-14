@@ -173,6 +173,15 @@
 
       .modal-contenido h2 { margin-right: 2rem; }
       .modal-contenido p { color: var(--suave); line-height: 1.65; }
+      .modal-contenido ul {
+        margin: 0.5rem 0 0;
+        padding-left: 1.4rem;
+        color: var(--suave);
+        line-height: 1.8;
+      }
+      .modal-contenido li + li {
+        margin-top: 0.45rem;
+      }
 
       .cerrar-modal {
         position: absolute;
@@ -209,6 +218,29 @@
         align-items: center;
         gap: 0.75rem;
         margin-top: 1rem;
+      }
+
+      .progreso-clicable {
+        cursor: pointer;
+        transition: transform 180ms ease, border-color 180ms ease;
+      }
+
+      .progreso-clicable:hover {
+        transform: translateY(-4px);
+        border-color: var(--azul);
+      }
+
+      .progreso-boton {
+        margin-top: 0.9rem;
+        display: inline-block;
+        border: 1px solid rgba(139, 177, 255, 0.5);
+        border-radius: 999px;
+        background: rgba(29, 86, 176, 0.18);
+        color: var(--texto);
+        font: inherit;
+        font-weight: 700;
+        padding: 0.5rem 0.85rem;
+        cursor: pointer;
       }
 
       .barra-progreso {
@@ -358,23 +390,23 @@
               <img class="imagen-juego" src="FALSE_PLAYER.jpeg" alt="False Player" />
             </div>
           </article>
-          <article>
+          <article class="progreso-clicable" id="one-more-day-progress" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Ver progreso de One More Day">
             <h3>Porcentaje de One More Day</h3>
             <p class="estado">EN DESARROLLO</p>
             <div class="progreso" aria-label="Progreso del proyecto: 13 por ciento">
               <div class="barra-progreso"><span style="width: 13%"></span></div>
               <span class="porcentaje">13%</span>
             </div>
-            <p class="porcentaje-descripcion">Ya tenemos listo: menú, diálogos, movimiento y mecánicas. Nos falta: escenarios, música y sprites. También estamos intentando que quede lo más optimizado posible para evitar problemas de rendimiento.</p>
+            <button class="progreso-boton" type="button">Ver detalles</button>
           </article>
-          <article>
+          <article class="progreso-clicable" id="false-player-progress" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Ver progreso de False Player">
             <h3>Porcentaje de False Player</h3>
             <p class="estado">PAUSADO</p>
             <div class="progreso" aria-label="Progreso de False Player: 20 por ciento">
               <div class="barra-progreso"><span class="veinte"></span></div>
               <span class="porcentaje">20%</span>
             </div>
-            <p class="porcentaje-descripcion">Este proyecto posiblemente se reinicie así que no se darán detalles por el momento.</p>
+            <button class="progreso-boton" type="button">Ver detalles</button>
           </article>
         </div>
       </section>
@@ -431,8 +463,15 @@
           descargaTexto: 'DESCARGAS DISPONIBLES PRONTO',
           aboutButton: '¿Qué es Pixel-Forge?',
           aboutText: '<p><strong>Pixel Forge</strong> es un pequeño estudio independiente dedicado a crear videojuegos originales, experimentales y llenos de creatividad. Nuestro objetivo es convertir ideas únicas en experiencias jugables, combinando pixel art, música, narrativa y programación.</p><p>Actualmente trabajamos en proyectos como <strong>FALSE PLAYER</strong> y <strong>OMD</strong>, explorando diferentes estilos, mecánicas e historias para crear juegos que se sientan hechos con personalidad propia.</p>',
-          oneMoreDayProgressDetail: 'Ya tenemos listo: menú, diálogos, movimiento y mecánicas. Nos falta: escenarios, música y sprites. También estamos intentando que quede lo más optimizado posible para evitar problemas de rendimiento.',
-          falsePlayerProgressDetail: 'Este proyecto posiblemente se reinicie así que no se darán detalles por el momento.',
+          progressButton: 'Ver detalles',
+          oneMoreDayProgressDetail: {
+            titulo: 'One More Day',
+            lista: ['Ya tenemos listo: menú', 'Diálogos listos', 'Movimiento funcionando', 'Mecánicas implementadas', 'Nos falta: escenarios', 'Música por añadir', 'Sprites por terminar', 'Optimización para rendimiento']
+          },
+          falsePlayerProgressDetail: {
+            titulo: 'False Player',
+            lista: ['Este proyecto posiblemente se reinicie', 'No se darán detalles por el momento', 'Se revisará su estructura más adelante', 'La prioridad actual puede cambiar']
+          },
           oneMoreDayTitle: 'One More Day',
           falsePlayerTitle: 'False Player',
           oneMoreDayText: '<p>En <strong>One More Day</strong>, despiertas en un día que parece ser completamente normal… pero algo no termina de encajar.</p><p>Explora tu entorno, descubre lo que se esconde detrás de los pequeños detalles y toma decisiones que podrían cambiar la forma en que transcurre el día. Entre momentos cotidianos, misterios y situaciones cada vez más extrañas, tendrás que descubrir qué está pasando realmente.</p><p><strong>Un día. Una oportunidad. ¿Qué harás con ella?</strong></p>',
@@ -452,8 +491,15 @@
           pronto: 'COMING SOON',
           descargaTitulo: 'Coming soon',
           descargaTexto: 'DOWNLOADS AVAILABLE SOON',
-          oneMoreDayProgressDetail: 'We already have: menu, dialogue, movement and mechanics. We still need: environments, music and sprites. We are also trying to keep it as optimized as possible to avoid performance issues.',
-          falsePlayerProgressDetail: 'This project may be restarted, so no details will be shared for now.',
+          progressButton: 'See details',
+          oneMoreDayProgressDetail: {
+            titulo: 'One More Day',
+            lista: ['Menu ready', 'Dialogues ready', 'Movement working', 'Mechanics implemented', 'Still missing: environments', 'Music to add', 'Sprites to finish', 'Optimization for performance']
+          },
+          falsePlayerProgressDetail: {
+            titulo: 'False Player',
+            lista: ['This project may be restarted', 'No details will be shared for now', 'Its structure will be reviewed later', 'Current priorities may change']
+          },
           oneMoreDayTitle: 'One More Day',
           falsePlayerTitle: 'False Player',
           aboutButton: 'What is Pixel-Forge?',
@@ -475,8 +521,15 @@
           pronto: 'EM BREVE',
           descargaTitulo: 'Em breve',
           descargaTexto: 'DOWNLOADS DISPONÍVEIS EM BREVE',
-          oneMoreDayProgressDetail: 'Já temos pronto: menu, diálogos, movimento e mecânicas. Falta: cenários, música e sprites. Também estamos tentando deixar o mais otimizado possível para evitar problemas de desempenho.',
-          falsePlayerProgressDetail: 'Este projeto pode ser reiniciado, então nenhum detalhe será compartilhado por enquanto.',
+          progressButton: 'Ver detalhes',
+          oneMoreDayProgressDetail: {
+            titulo: 'One More Day',
+            lista: ['Menu pronto', 'Diálogos prontos', 'Movimento funcionando', 'Mecânicas implementadas', 'Ainda falta: cenários', 'Música por adicionar', 'Sprites para terminar', 'Otimização para desempenho']
+          },
+          falsePlayerProgressDetail: {
+            titulo: 'False Player',
+            lista: ['Este projeto pode ser reiniciado', 'Nenhum detalhe será compartilhado por enquanto', 'Sua estrutura será revisada mais tarde', 'As prioridades atuais podem mudar']
+          },
           oneMoreDayTitle: 'One More Day',
           falsePlayerTitle: 'False Player',
           aboutButton: 'O que é Pixel-Forge?',
@@ -498,8 +551,15 @@
           pronto: '近日公開',
           descargaTitulo: '近日公開',
           descargaTexto: 'ダウンロードはまもなく利用可能',
-          oneMoreDayProgressDetail: 'メニュー、会話、移動、メカニクスはすでに完成しています。まだ不足しているのは、背景、音楽、スプライトです。また、パフォーマンスの問題を避けるため、できるだけ最適化を進めています。',
-          falsePlayerProgressDetail: 'このプロジェクトは再始動する可能性があるため、現時点では詳細は公開しません。',
+          progressButton: '詳細を見る',
+          oneMoreDayProgressDetail: {
+            titulo: 'One More Day',
+            lista: ['メニュー完成', '会話完成', '移動機能実装済み', 'メカニクス実装済み', 'まだ不足: 背景', '追加予定: 音楽', '仕上げ予定: スプライト', 'パフォーマンスの最適化を進行中']
+          },
+          falsePlayerProgressDetail: {
+            titulo: 'False Player',
+            lista: ['このプロジェクトは再始動する可能性あり', '現時点では詳細は公開しません', '構造は後ほど見直されます', '優先順位は変更される可能性があります']
+          },
           oneMoreDayTitle: 'One More Day',
           falsePlayerTitle: 'False Player',
           aboutButton: 'Pixel-Forge とは？',
@@ -528,6 +588,15 @@
         }
       };
 
+      function convertirIdProyecto(id) {
+        return id.replace(/-([a-z])/g, (_, letra) => letra.toUpperCase());
+      }
+
+      function generarListaDetalle(detalle) {
+        const items = detalle.lista.map((item) => `<li>${item}</li>`).join('');
+        return `<div><ul>${items}</ul></div>`;
+      }
+
       function actualizarTexto() {
         const t = traducciones[idiomaActual];
         document.documentElement.lang = idiomaActual;
@@ -538,6 +607,10 @@
         togglePixelForge.textContent = t.aboutButton;
         pixelForgeInfo.innerHTML = t.aboutText;
         document.querySelector('header p').textContent = t.lema;
+
+        document.querySelectorAll('.progreso-boton').forEach((boton) => {
+          boton.textContent = t.progressButton;
+        });
 
         const titulosSeccion = document.querySelectorAll('h2');
         titulosSeccion[0].textContent = t.secciones[0];
@@ -564,24 +637,39 @@
         const descarga = document.querySelector('.descarga');
         descarga.textContent = t.descargaTexto;
 
-        const descripcionProgreso = document.querySelectorAll('.porcentaje-descripcion');
-        descripcionProgreso[0].textContent = t.oneMoreDayProgressDetail;
-        descripcionProgreso[1].textContent = t.falsePlayerProgressDetail;
-
         if (modal.classList.contains('abierto')) {
-          const actual = modal.dataset.project;
-          const p = proyectos[actual];
-          modalTitulo.textContent = p.title;
-          modalCuerpo.innerHTML = t[p.key + 'Text'];
+          if (modal.dataset.type === 'progreso') {
+            const actual = modal.dataset.project;
+            const detalle = t[convertirIdProyecto(actual) + 'ProgressDetail'];
+            modalTitulo.textContent = detalle.titulo;
+            modalCuerpo.innerHTML = generarListaDetalle(detalle);
+          } else {
+            const actual = modal.dataset.project;
+            const p = proyectos[actual];
+            modalTitulo.textContent = p.title;
+            modalCuerpo.innerHTML = t[p.key + 'Text'];
+          }
         }
       }
 
       function abrirProyecto(id) {
         const project = proyectos[id];
         const textKey = project.key + 'Text';
+        modal.dataset.type = 'proyecto';
         modal.dataset.project = id;
         modalTitulo.textContent = project.title;
         modalCuerpo.innerHTML = traducciones[idiomaActual][textKey];
+        modal.classList.add('abierto');
+        modal.setAttribute('aria-hidden', 'false');
+        modal.querySelector('.cerrar-modal').focus();
+      }
+
+      function abrirProgreso(id) {
+        modal.dataset.type = 'progreso';
+        modal.dataset.project = id;
+        const detalle = traducciones[idiomaActual][convertirIdProyecto(id) + 'ProgressDetail'];
+        modalTitulo.textContent = detalle.titulo;
+        modalCuerpo.innerHTML = generarListaDetalle(detalle);
         modal.classList.add('abierto');
         modal.setAttribute('aria-hidden', 'false');
         modal.querySelector('.cerrar-modal').focus();
@@ -591,6 +679,7 @@
         modal.classList.remove('abierto');
         modal.setAttribute('aria-hidden', 'true');
         modal.dataset.project = '';
+        modal.dataset.type = '';
       }
 
       document.querySelectorAll('.proyecto-clicable').forEach((card) => {
@@ -599,6 +688,16 @@
           if (event.key === 'Enter' || event.key === ' ') {
             event.preventDefault();
             abrirProyecto(card.id);
+          }
+        });
+      });
+
+      document.querySelectorAll('.progreso-clicable').forEach((card) => {
+        card.addEventListener('click', () => abrirProgreso(card.id.replace('-progress', '')));
+        card.addEventListener('keydown', (event) => {
+          if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault();
+            abrirProgreso(card.id.replace('-progress', ''));
           }
         });
       });
