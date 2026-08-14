@@ -53,10 +53,50 @@
 
       .logo {
         display: block;
-        width: min(290px, 70vw);
+        width: min(220px, 50vw);
+        aspect-ratio: 1;
+        object-fit: cover;
         margin: 0 auto 1.5rem;
-        border-radius: 20px;
-        box-shadow: 0 14px 32px rgba(0, 0, 0, 0.3), 0 0 18px rgba(59, 130, 246, 0.22);
+        padding: 0.2rem;
+        border-radius: 50%;
+        border: 2px solid rgba(134, 200, 255, 0.8);
+        background: rgba(255, 255, 255, 0.04);
+        box-shadow:
+          0 0 0 2px rgba(139, 63, 209, 0.26),
+          0 0 18px rgba(96, 200, 255, 0.5),
+          0 14px 32px rgba(0, 0, 0, 0.3);
+      }
+
+      .studio-toggle-wrap {
+        width: min(1000px, calc(100% - 3rem));
+        margin: 0 auto 1.5rem;
+      }
+
+      .studio-toggle {
+        width: 100%;
+        border: 1px solid rgba(139, 177, 255, 0.46);
+        border-radius: 14px;
+        background: rgba(9, 25, 56, 0.9);
+        color: var(--texto);
+        font: inherit;
+        font-weight: 700;
+        padding: 0.9rem 1rem;
+        cursor: pointer;
+        box-shadow: 0 10px 24px rgba(0, 0, 0, 0.24);
+      }
+
+      .studio-info {
+        margin-top: 0.85rem;
+        padding: 1rem 1.1rem;
+        border: 1px solid rgba(139, 177, 255, 0.3);
+        border-radius: 16px;
+        background: rgba(24, 12, 42, 0.8);
+        color: var(--suave);
+        line-height: 1.7;
+      }
+
+      .studio-info[hidden] {
+        display: none;
       }
 
       main {
@@ -279,6 +319,13 @@
         <li><strong>potatino:</strong> visuales, principalmente pixel art</li>
       </ul>
     </details>
+    <div class="studio-toggle-wrap">
+      <button class="studio-toggle" id="toggle-pixel-forge" type="button" aria-expanded="false">¿Qué es Pixel-Forge?</button>
+      <section class="studio-info" id="pixel-forge-info" hidden>
+        <p><strong>Pixel Forge</strong> es un pequeño estudio independiente dedicado a crear videojuegos originales, experimentales y llenos de creatividad. Nuestro objetivo es convertir ideas únicas en experiencias jugables, combinando pixel art, música, narrativa y programación.</p>
+        <p>Actualmente trabajamos en proyectos como <strong>FALSE PLAYER</strong> y <strong>OMD</strong>, explorando diferentes estilos, mecánicas e historias para crear juegos que se sientan hechos con personalidad propia.</p>
+      </section>
+    </div>
     <header>
       <img class="logo" src="Pixel forge-logo.jpeg" alt="Logo de Pixel Forge" />
       <h1>PIXEL FORGE GAMES</h1>
@@ -399,6 +446,8 @@
           descargaTexto: 'DOWNLOADS AVAILABLE SOON',
           oneMoreDayTitle: 'One More Day',
           falsePlayerTitle: 'False Player',
+          aboutButton: 'What is Pixel-Forge?',
+          aboutText: '<p><strong>Pixel Forge</strong> is a small independent studio dedicated to creating original, experimental and creative video games. Our goal is to turn unique ideas into playable experiences, combining pixel art, music, storytelling and programming.</p><p>We are currently working on projects such as <strong>FALSE PLAYER</strong> and <strong>OMD</strong>, exploring different styles, mechanics and stories to create games that feel genuinely personal.</p>',
           oneMoreDayText: '<p>In <strong>One More Day</strong>, you wake up on a day that seems completely normal… but something does not quite fit.</p><p>Explore your surroundings, uncover what is hidden behind the small details, and make decisions that could change the way the day unfolds. Between ordinary moments, mysteries, and increasingly strange situations, you will have to discover what is really happening.</p><p><strong>One day. One chance. What will you do with it?</strong></p>',
           falsePlayerText: '<p>In <strong>False Player</strong>, you are a player inside a world that seems to function normally… until you begin to notice that something is wrong.</p><p>As you explore, you will meet artificial intelligences and mysterious <strong>characters</strong>, while uncovering the secrets behind the world you live in. But the more you try to understand the truth, the more reality begins to break apart.</p><p>Your decisions will determine the path you take, and depending on them, you might discover a truth that was never supposed to be found.</p><p><strong>Are you really the player… or just another element of the game?</strong></p>'
         },
@@ -418,6 +467,8 @@
           descargaTexto: 'DOWNLOADS DISPONÍVEIS EM BREVE',
           oneMoreDayTitle: 'One More Day',
           falsePlayerTitle: 'False Player',
+          aboutButton: 'O que é Pixel-Forge?',
+          aboutText: '<p><strong>Pixel Forge</strong> é um pequeno estúdio independente dedicado a criar videogames originais, experimentais e cheios de criatividade. Nosso objetivo é transformar ideias únicas em experiências jogáveis, combinando pixel art, música, narrativa e programação.</p><p>Atualmente, estamos trabalhando em projetos como <strong>FALSE PLAYER</strong> e <strong>OMD</strong>, explorando diferentes estilos, mecânicas e histórias para criar jogos com personalidade própria.</p>',
           oneMoreDayText: '<p>Em <strong>One More Day</strong>, você acorda em um dia que parece completamente normal… mas algo não parece encaixar.</p><p>Explore o seu entorno, descubra o que está escondido por trás dos pequenos detalhes e tome decisões que podem mudar a forma como o dia se desenrola. Entre momentos cotidianos, mistérios e situações cada vez mais estranhas, você terá de descobrir o que realmente está acontecendo.</p><p><strong>Um dia. Uma oportunidade. O que você fará com ela?</strong></p>',
           falsePlayerText: '<p>Em <strong>False Player</strong>, você é um jogador dentro de um mundo que parece funcionar normalmente… até começar a perceber que algo está errado.</p><p>À medida que explora, você conhecerá inteligências artificiais e misteriosos <strong>personagens</strong>, enquanto descobre os segredos por trás do mundo em que vive. Mas quanto mais tenta compreender a verdade, mais a realidade começa a se romper.</p><p>Suas decisões determinarão o caminho que você seguirá e, dependendo delas, talvez descubra uma verdade que nunca deveria ter sido encontrada.</p><p><strong>Você é realmente o jogador… ou apenas mais um elemento do jogo?</strong></p>'
         },
@@ -437,6 +488,8 @@
           descargaTexto: 'ダウンロードはまもなく利用可能',
           oneMoreDayTitle: 'One More Day',
           falsePlayerTitle: 'False Player',
+          aboutButton: 'Pixel-Forge とは？',
+          aboutText: '<p><strong>Pixel Forge</strong> は、独自性のあるゲームを作り続ける小さな独立スタジオです。オリジナルで実験的、そして創造性あふれるゲームを制作し、ユニークなアイデアをプレイアブルな体験へと変えることを目指しています。ピクセルアート、音楽、物語、プログラミングを組み合わせて作品を形にしています。</p><p>現在、<strong>FALSE PLAYER</strong> と <strong>OMD</strong> などのプロジェクトに取り組んでおり、さまざまなスタイル、メカニクス、物語を探求し、自分だけの個性を持つゲームを作り上げています。</p>',
           oneMoreDayText: '<p><strong>One More Day</strong>では、普段と何も変わらないはずの日に目覚めます……しかし、何かが少しおかしいのを感じます。</p><p>周囲を探索し、小さな違和感の奥に隠れた真実を見つけ、日常の流れを変える選択をしていきます。日常の中に潜む謎と、どんどん不気味になっていく状況の中で、何が本当に起きているのかを知ることになります。</p><p><strong>一日、一度のチャンス。あなたはそれをどう使いますか？</strong></p>',
           falsePlayerText: '<p><strong>False Player</strong>では、普通に機能しているように見える世界の中にいるプレイヤーとして、ある時「何かがおかしい」と気づき始めます。</p><p>探索を進めるにつれて、人工知能や謎の<strong>キャラクター</strong>と出会い、住んでいる世界の裏側に隠された秘密に触れていきます。しかし真実を知ろうとすればするほど、現実そのものが崩れ始めます。</p><p>あなたの選択が進む道を決め、どの道を選ぶかで、決して見つけてはいけなかった真実を見つけることになるかもしれません。</p><p><strong>あなたは本当にプレイヤーなのか……それともゲームの中のただの要素にすぎないのか？</strong></p>'
         }
@@ -446,6 +499,8 @@
       const modalTitulo = document.getElementById('modal-titulo');
       const modalCuerpo = document.getElementById('modal-cuerpo');
       const selectIdioma = document.getElementById('idioma');
+      const togglePixelForge = document.getElementById('toggle-pixel-forge');
+      const pixelForgeInfo = document.getElementById('pixel-forge-info');
       let idiomaActual = 'es';
 
       const proyectos = {
@@ -466,6 +521,8 @@
         document.querySelector('.desarrolladores summary').textContent = t.devs;
         document.querySelectorAll('.desarrolladores li')[0].innerHTML = '<strong>FEFE_xd:</strong> ' + t.fefe;
         document.querySelectorAll('.desarrolladores li')[1].innerHTML = '<strong>potatino:</strong> ' + t.potatino;
+        togglePixelForge.textContent = t.aboutButton;
+        pixelForgeInfo.innerHTML = t.aboutText;
         document.querySelector('header p').textContent = t.lema;
 
         const titulosSeccion = document.querySelectorAll('h2');
@@ -537,6 +594,12 @@
         if (event.key === 'Escape' && modal.classList.contains('abierto')) {
           cerrarModal();
         }
+      });
+
+      togglePixelForge.addEventListener('click', () => {
+        const visible = !pixelForgeInfo.hidden;
+        pixelForgeInfo.hidden = visible;
+        togglePixelForge.setAttribute('aria-expanded', String(!visible));
       });
 
       selectIdioma.addEventListener('change', (event) => {
