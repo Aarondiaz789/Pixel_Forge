@@ -365,6 +365,7 @@
               <div class="barra-progreso"><span style="width: 13%"></span></div>
               <span class="porcentaje">13%</span>
             </div>
+            <p class="porcentaje-descripcion">Ya tenemos listo: menú, diálogos, movimiento y mecánicas. Nos falta: escenarios, música y sprites. También estamos intentando que quede lo más optimizado posible para evitar problemas de rendimiento.</p>
           </article>
           <article>
             <h3>Porcentaje de False Player</h3>
@@ -373,6 +374,7 @@
               <div class="barra-progreso"><span class="veinte"></span></div>
               <span class="porcentaje">20%</span>
             </div>
+            <p class="porcentaje-descripcion">Este proyecto posiblemente se reinicie así que no se darán detalles por el momento.</p>
           </article>
         </div>
       </section>
@@ -429,6 +431,8 @@
           descargaTexto: 'DESCARGAS DISPONIBLES PRONTO',
           aboutButton: '¿Qué es Pixel-Forge?',
           aboutText: '<p><strong>Pixel Forge</strong> es un pequeño estudio independiente dedicado a crear videojuegos originales, experimentales y llenos de creatividad. Nuestro objetivo es convertir ideas únicas en experiencias jugables, combinando pixel art, música, narrativa y programación.</p><p>Actualmente trabajamos en proyectos como <strong>FALSE PLAYER</strong> y <strong>OMD</strong>, explorando diferentes estilos, mecánicas e historias para crear juegos que se sientan hechos con personalidad propia.</p>',
+          oneMoreDayProgressDetail: 'Ya tenemos listo: menú, diálogos, movimiento y mecánicas. Nos falta: escenarios, música y sprites. También estamos intentando que quede lo más optimizado posible para evitar problemas de rendimiento.',
+          falsePlayerProgressDetail: 'Este proyecto posiblemente se reinicie así que no se darán detalles por el momento.',
           oneMoreDayTitle: 'One More Day',
           falsePlayerTitle: 'False Player',
           oneMoreDayText: '<p>En <strong>One More Day</strong>, despiertas en un día que parece ser completamente normal… pero algo no termina de encajar.</p><p>Explora tu entorno, descubre lo que se esconde detrás de los pequeños detalles y toma decisiones que podrían cambiar la forma en que transcurre el día. Entre momentos cotidianos, misterios y situaciones cada vez más extrañas, tendrás que descubrir qué está pasando realmente.</p><p><strong>Un día. Una oportunidad. ¿Qué harás con ella?</strong></p>',
@@ -448,6 +452,8 @@
           pronto: 'COMING SOON',
           descargaTitulo: 'Coming soon',
           descargaTexto: 'DOWNLOADS AVAILABLE SOON',
+          oneMoreDayProgressDetail: 'We already have: menu, dialogue, movement and mechanics. We still need: environments, music and sprites. We are also trying to keep it as optimized as possible to avoid performance issues.',
+          falsePlayerProgressDetail: 'This project may be restarted, so no details will be shared for now.',
           oneMoreDayTitle: 'One More Day',
           falsePlayerTitle: 'False Player',
           aboutButton: 'What is Pixel-Forge?',
@@ -469,6 +475,8 @@
           pronto: 'EM BREVE',
           descargaTitulo: 'Em breve',
           descargaTexto: 'DOWNLOADS DISPONÍVEIS EM BREVE',
+          oneMoreDayProgressDetail: 'Já temos pronto: menu, diálogos, movimento e mecânicas. Falta: cenários, música e sprites. Também estamos tentando deixar o mais otimizado possível para evitar problemas de desempenho.',
+          falsePlayerProgressDetail: 'Este projeto pode ser reiniciado, então nenhum detalhe será compartilhado por enquanto.',
           oneMoreDayTitle: 'One More Day',
           falsePlayerTitle: 'False Player',
           aboutButton: 'O que é Pixel-Forge?',
@@ -490,6 +498,8 @@
           pronto: '近日公開',
           descargaTitulo: '近日公開',
           descargaTexto: 'ダウンロードはまもなく利用可能',
+          oneMoreDayProgressDetail: 'メニュー、会話、移動、メカニクスはすでに完成しています。まだ不足しているのは、背景、音楽、スプライトです。また、パフォーマンスの問題を避けるため、できるだけ最適化を進めています。',
+          falsePlayerProgressDetail: 'このプロジェクトは再始動する可能性があるため、現時点では詳細は公開しません。',
           oneMoreDayTitle: 'One More Day',
           falsePlayerTitle: 'False Player',
           aboutButton: 'Pixel-Forge とは？',
@@ -553,6 +563,10 @@
 
         const descarga = document.querySelector('.descarga');
         descarga.textContent = t.descargaTexto;
+
+        const descripcionProgreso = document.querySelectorAll('.porcentaje-descripcion');
+        descripcionProgreso[0].textContent = t.oneMoreDayProgressDetail;
+        descripcionProgreso[1].textContent = t.falsePlayerProgressDetail;
 
         if (modal.classList.contains('abierto')) {
           const actual = modal.dataset.project;
